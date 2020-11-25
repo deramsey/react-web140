@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>React Example</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js" integrity="sha512kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA==" crossorigin="anonymous"></script>  
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>  
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>  
+
+
+</head>
+<body>
+<main id="app"></main>
+
+
+<script type="text/babel">
+let dish = document.querySelector("#app");
+
+class Hello extends React.Component {
+
+    render() {
+        return(<section><h1>{this.props.itemTitle}</h1><p>{this.props.itemText}</p></section>)
+    }
+
+}
+
+ReactDOM.render(
+    <div><Hello itemTitle="Hello World!" itemText="This is my first React app." /><Hello itemTitle="I'm Just Getting Started" itemText="I think I'm getting the hang of it." /></div>, dish
+)
+
+
+
+</script>
+</body>
+
+
+</html>

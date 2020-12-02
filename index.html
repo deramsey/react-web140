@@ -5,7 +5,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js" integrity="sha512kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA==" crossorigin="anonymous"></script>  
     <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>  
-    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>  
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
 </head>
@@ -19,13 +20,45 @@ let dish = document.querySelector("#app");
 class Hello extends React.Component {
 
     render() {
-        return(<section><h1>{this.props.itemTitle}</h1><p>{this.props.itemText}</p></section>)
+        return(<section class="hideMe"><h1>{this.props.itemTitle}</h1><p>{this.props.itemText}</p></section>)
     }
 
 }
 
+class Welcome extends React.Component {
+
+    componentDidMount(){
+        $("button").on("click", function(){
+            $("#r").css("color", "red");
+            $(".hideMe").hide();
+        })
+    }
+
+    constructor(props){
+        super(props);
+
+        this.state = {
+            welMsg: "Have a wonderful time!",
+            username: "",
+            counter: 0
+        }
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick() {
+        this.setState({
+            username: ", SampleUser",
+            counter: this.state.counter + 1
+        })
+    }
+
+    render() {
+        return(<section><h1 id="r">Welcome to the Website{this.state.username}!</h1><p>{this.state.welMsg}</p><p>{this.state.counter}</p><button onClick={this.handleClick}>Click Me</button></section>)
+    }
+}
+
 ReactDOM.render(
-    <div><Hello itemTitle="Hello World!" itemText="This is my first React app." /><Hello itemTitle="I'm Just Getting Started" itemText="I think I'm getting the hang of it." /></div>, dish
+    <div><Hello itemTitle="Hello World!" itemText="This is my first React app." /><Hello itemTitle="I'm Just Getting Started" itemText="I think I'm getting the hang of it." /><Welcome /></div>, dish
 )
 
 
